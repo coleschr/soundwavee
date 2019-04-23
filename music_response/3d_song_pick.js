@@ -121,12 +121,20 @@ function setup(){
   zScale = 150;
 
   zoom = 300;
-  
+
+
+  //code for selection interface
+  var buttons = [];
+  for(var i = 0; i < sounds.length; i++){
+    var buttons[i] = $('#foreground2').add('button');
+    buttons[i].attr('value',i);
+
+  }
   input = createInput();
   input.parent("foreground2");
   input.position(width / 10, height / 10);
 
-  button = createButton('change song');
+  button = createButton( 'change song');
   button.parent("foreground2");
   button.position(width / 10 + input.width, height / 10);
   button.mousePressed(changeSong);
