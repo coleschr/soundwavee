@@ -124,15 +124,25 @@ function setup(){
 
 
   //code for selection interface
-  var buttons = [];
-  for(var i = 0; i < sounds.length; i++){
-    var buttons[i] = $('#foreground2').add('button');
-    buttons[i].attr('value',i);
 
-  }
   input = createInput();
   input.parent("foreground2");
   input.position(width / 10, height / 10);
+
+  var buttons = [];
+  for(var i = 0; i < sounds.length; i++){
+    buttons[i] = createButton((''+i));
+    buttons[i].parent("foreground2");
+    button[i].position(i*50, height / 10);
+
+    button.mousePressed(function(){
+      input = i;
+      changeSong();
+    });
+
+  }
+
+
 
   button = createButton( 'change song');
   button.parent("foreground2");
@@ -242,7 +252,6 @@ function changeSong() {
     sounds[soundNum].loop();
   }
 }
-
 
 
 
