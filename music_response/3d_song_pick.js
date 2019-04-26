@@ -121,30 +121,12 @@ function setup(){
   zScale = 150;
 
   zoom = 300;
-
-
-  //code for selection interface
-
+  
   input = createInput();
   input.parent("foreground2");
   input.position(width / 10, height / 10);
 
-  var buttons = [];
-  for(var i = 0; i < sounds.length; i++){
-    buttons[i] = createButton((''+i));
-    buttons[i].parent("foreground2");
-    button[i].position(i*50, height / 10);
-
-    button.mousePressed(function(){
-      input = i;
-      changeSong();
-    });
-
-  }
-
-
-
-  button = createButton( 'change song');
+  button = createButton('change song');
   button.parent("foreground2");
   button.position(width / 10 + input.width, height / 10);
   button.mousePressed(changeSong);
@@ -225,8 +207,8 @@ function draw(){
           fill(interColor);
           stroke(strokeColor);
           strokeWeight(1);
-          vertex(meshX*32-width/1.75, meshY*20-height/5, z1);
-          vertex(meshX*32-width/1.75, (meshY+1)*20-height/5, z2);
+          vertex(meshX*64-width/1.5, meshY*30-height/6, z1);
+          vertex(meshX*64-width/1.5, (meshY+1)*30-height/6, z2);
         }
         endShape();
       }
@@ -252,6 +234,7 @@ function changeSong() {
     sounds[soundNum].loop();
   }
 }
+
 
 
 
