@@ -47,6 +47,10 @@ var button;
 var play;
 var soundNum;
 var sounds = [];
+var x;
+var colorList = [];
+var rawColors = [];
+var colorsSet = false;
 
 let bg;
 
@@ -65,7 +69,7 @@ function preload(){
   sounds[11] = loadSound('sound_files/12. Shallow - Lady Gaga, Bradley Cooper.mp3');
   sounds[12] = loadSound('sound_files/13. Wow. - Post Malone.mp3');
   sounds[13] = loadSound('sound_files/14. Don’t Call Me Up - Mabel.mp3');
-  sounds[14] = loadSound('sound_files/15. Calma remix - Pedro Capó, Farruko.mp3');
+  sounds[14] = loadSound('sound_files/15. Calma remix - Pedro Capó, Farruko.mp3');
   sounds[15] = loadSound('sound_files/16. Kill This Love - Blackpink.mp3');
   sounds[16] = loadSound('sound_files/17. Sweet but Psycho - Ava Max.mp3');
   sounds[17] = loadSound('sound_files/18. HP - Maluma.mp3');
@@ -99,17 +103,38 @@ function setup(){
   numWaves = 30;
 
   // ------ mesh coloring ------
-  strokeColor = color(255, 255, 255);
-  color1 = color(0, 5, 30);
-  color2 = color(145, 245, 254);
-  color3 = color(255, 214, 79);
-  color4 = color(111, 232, 30);
-  color5 = color(177, 100, 37);
-  color6 = color(70, 40, 10);
-  color7 = color(255, 255, 255);
-  color8 = color(0, 0, 0);
-  backgroundColor = color(255, 255, 255, 0);
-
+  
+  x = document.createElement("IMG");
+  x.setAttribute("src", "./images/blue.jpg");
+  x.setAttribute("width", 144);
+  x.setAttribute("height", 144);
+  x.onload = function() {
+    //prominent colors extracted from image thanks to color thief (MIT License) developed by @lokesh on github!
+    //https://github.com/lokesh/color-thief
+    var colorThief = new ColorThief();
+    rawColors = colorThief.getPalette(x, 9);
+    console.log(rawColors);
+    for(var i=0; i<rawColors.length; i++)
+    {
+      var c = color(rawColors[i][0], rawColors[i][1], rawColors[i][2]);
+      colorList.push(c);
+    }
+    color1 = colorList[0];
+    color2 = colorList[1];
+    color3 = colorList[2];
+    color4 = colorList[3];
+    color5 = colorList[4];
+    color6 = colorList[5];
+    color7 = colorList[6];
+    color8 = colorList[7];
+    backgroundColor = colorList[8];
+    colorsSet = true;
+    redraw();
+    
+  };
+  
+  strokeColor = color(255,255,255);
+  
   threshold1 = 0;
   threshold2 = 2;
   threshold3 = 10;
@@ -140,7 +165,7 @@ function setup(){
 }
 
 function draw(){
-  if(sounds[soundNum].isPlaying())
+  if(sounds[soundNum].isPlaying() && colorsSet)
   {
     background(backgroundColor);
     var spectrum = fft.analyze();
