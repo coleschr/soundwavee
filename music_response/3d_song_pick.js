@@ -270,7 +270,34 @@ function changeSong() {
   {
     sounds[soundNum].stop();
     soundNum = input.value() - 1;
-    sounds[soundNum].loop();
+    x = document.createElement("IMG");
+    x.setAttribute("src", albArt[soundNum]);
+    x.setAttribute("width", 144);
+    x.setAttribute("height", 144);
+    x.onload = function() {
+      //prominent colors extracted from image thanks to color thief (MIT License) developed by @lokesh on github!
+      //https://github.com/lokesh/color-thief
+      var colorThief = new ColorThief();
+      rawColors = colorThief.getPalette(x, 9);
+      console.log(rawColors);
+      for(var i=0; i<rawColors.length; i++)
+      {
+        var c = color(rawColors[i][0], rawColors[i][1], rawColors[i][2]);
+        colorList.push(c);
+      }
+      color1 = colorList[0];
+      color2 = colorList[1];
+      color3 = colorList[2];
+      color4 = colorList[3];
+      color5 = colorList[4];
+      color6 = colorList[5];
+      color7 = colorList[6];
+      color8 = colorList[7];
+      backgroundColor = colorList[8];
+      colorsSet = true;
+      redraw();
+
+    };
   }
 }
 
