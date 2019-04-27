@@ -127,7 +127,7 @@ function setup(){
   color8 = color(0, 0, 0);
   
   changeColor(soundNum);
-  
+  backgroundColor = color(255,255,255,0);
   strokeColor = color(255,255,255);
   
   threshold1 = 0;
@@ -271,7 +271,6 @@ function changeColor(colorNum)
     color6 = colorList[5];
     color7 = colorList[6];
     color8 = colorList[7];
-    backgroundColor = colorList[8];
     colorsSet = true;
     redraw();
   };
