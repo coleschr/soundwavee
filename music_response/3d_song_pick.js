@@ -76,6 +76,9 @@ function preload(){
   sounds[17] = loadSound('sound_files/18. HP - Maluma.mp3');
   sounds[18] = loadSound('sound_files/19. Pa mi remix - Dalex.mp3');
   sounds[19] = loadSound('sound_files/20. Here with me - Marshmello.mp3');
+  sounds[20] = loadSound("sound_files/b.mp3");
+sounds[21] = loadSound('sound_files/c.mp3');
+	sounds[22] = loadSound('sound_files/d.mp3');
   albArt[0] = "./images/billie.jpg";
   albArt[1] = "./images/oldtownroadremix.jpeg";
   albArt[2] = "./images/oldtownroad.jpeg";
@@ -96,6 +99,9 @@ function preload(){
   albArt[17] = "./images/hpmaluma.jpg";
   albArt[18] = "./images/pami.jpg";
   albArt[19] = "./images/herewithme.png";
+	albArt[20] = "./images/letmegetdown.png";
+	albArt[21] = "images/letmegetdown.png";
+	albArt[22] = "images/letmegetdown.png";
 }
 
 function setup(){
@@ -278,7 +284,7 @@ function changeColor(colorNum)
 }
 
 function changeSong() {
-  if(input.value() > 0 && input.value() <= 20)
+  if(input.value() > 0 && input.value() <= sounds.length)
   {
     sounds[soundNum].stop();
     soundNum = input.value() - 1;
