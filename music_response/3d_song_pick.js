@@ -104,7 +104,7 @@ function setup(){
   colorMode(RGB);
   cursor(CROSS);
   fft = new p5.FFT(0.8, detail);
-  soundNum = 6;
+  soundNum = 3;
   sounds[soundNum].amp(0.2);
   frameRate(60);
   play = true;
@@ -160,7 +160,7 @@ function setup(){
 }
 
 function draw(){
-  if(sounds[soundNum].isPlaying() && colorsSet)
+  if(sounds[soundNum].isPlaying())
   {
     background(backgroundColor);
     var spectrum = fft.analyze();
@@ -248,6 +248,7 @@ function togglePlay() {
 
 function changeColor(colorNum)
 {
+	console.log("changeColor");
   x = document.createElement("IMG");
   x.setAttribute("src", albArt[colorNum]);
   x.setAttribute("width", 144);
@@ -261,7 +262,8 @@ function changeColor(colorNum)
     for(var i=0; i<rawColors.length; i++)
     {
       var c = color(rawColors[i][0], rawColors[i][1], rawColors[i][2]);
-      colorList.push(c);
+      colorList[i] = c;
+      console.log(c);
     }
     color1 = colorList[0];
     color2 = colorList[1];
@@ -271,7 +273,6 @@ function changeColor(colorNum)
     color6 = colorList[5];
     color7 = colorList[6];
     color8 = colorList[7];
-    colorsSet = true;
     redraw();
   };
 }
@@ -281,8 +282,8 @@ function changeSong() {
   {
     sounds[soundNum].stop();
     soundNum = input.value() - 1;
-    changeColor(soundNum);
     sounds[soundNum].loop();
+    changeColor(soundNum);
   }
 }
 
