@@ -48,6 +48,7 @@ var play;
 var soundNum;
 var sounds = [];
 var x;
+var albArt = [];
 var colorList = [];
 var rawColors = [];
 var colorsSet = false;
@@ -75,13 +76,26 @@ function preload(){
   sounds[17] = loadSound('sound_files/18. HP - Maluma.mp3');
   sounds[18] = loadSound('sound_files/19. Pa mi remix - Dalex.mp3');
   sounds[19] = loadSound('sound_files/20. Here with me - Marshmello.mp3');
-  sounds[20] = loadSound('sound_files/Arctic Monkeys - Do I Wanna Know- (Official Video).mp3');
-  sounds[21] = loadSound('sound_files/Boredom.mp3');
-  sounds[22] = loadSound('sound_files/Childish Gambino - Summertime Magic (Audio).mp3');
-  sounds[23] = loadSound('sound_files/Flume - MUD.mp3');
-  sounds[24] = loadSound('sound_files/Khalid - Talk (Audio).mp3');
-  sounds[25] = loadSound('sound_files/Post Malone, Swae Lee - Sunflower (Spider-Man Into the Spider-Verse).mp3');
-  sounds[26] = loadSound('sound_files/Tame Impala - Feels Like We Only Go Backwards.mp3');
+  albArt[0] = "./images/billie.jpg";
+  albArt[1] = "./images/oldtownroadremix.jpeg";
+  albArt[2] = "./images/oldtownroad.jpeg";
+  albArt[3] = "./images/concalma.jpeg";
+  albArt[4] = "./images/sos.png";
+  albArt[5] = "./images/7rings.png";
+  albArt[6] = "./images/sunflower.jpg";
+  albArt[7] = "./images/boywithluv.png";
+  albArt[8] = "./images/sucker.jpg";
+  albArt[9] = "./images/talk.jpg";
+  albArt[10] = "./images/billie.jpg";
+  albArt[11] = "./images/shallow.jpg";
+  albArt[12] = "./images/wow.jpg";
+  albArt[13] = "./images/dontcallmeup.jpg";
+  albArt[14] = "./images/calma.jpg";
+  albArt[15] = "./images/killthislove.jpg";
+  albArt[16] = "./images/sweetbutpsycho.jpg";
+  albArt[17] = "./images/hpmaluma.jpg";
+  albArt[18] = "./images/pami.jpg";
+  albArt[19] = "./images/herewithme.png";
 }
 
 function setup(){
@@ -90,7 +104,7 @@ function setup(){
   colorMode(RGB);
   cursor(CROSS);
   fft = new p5.FFT(0.8, detail);
-  soundNum = 25;
+  soundNum = 6;
   sounds[soundNum].amp(0.2);
   frameRate(60);
   play = true;
@@ -105,7 +119,7 @@ function setup(){
   // ------ mesh coloring ------
   
   x = document.createElement("IMG");
-  x.setAttribute("src", "./images/blue.jpg");
+  x.setAttribute("src", albArt[soundNum]);
   x.setAttribute("width", 144);
   x.setAttribute("height", 144);
   x.onload = function() {
@@ -252,7 +266,7 @@ function togglePlay() {
 }
 
 function changeSong() {
-  if(input.value() > 0 && input.value() <= 27)
+  if(input.value() > 0 && input.value() <= 20)
   {
     sounds[soundNum].stop();
     soundNum = input.value() - 1;
