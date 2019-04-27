@@ -117,35 +117,16 @@ function setup(){
   numWaves = 30;
 
   // ------ mesh coloring ------
+  color1 = color(0, 5, 30);
+  color2 = color(145, 245, 254);
+  color3 = color(255, 214, 79);
+  color4 = color(111, 232, 30);
+  color5 = color(177, 100, 37);
+  color6 = color(70, 40, 10);
+  color7 = color(255, 255, 255);
+  color8 = color(0, 0, 0);
   
-  x = document.createElement("IMG");
-  x.setAttribute("src", albArt[soundNum]);
-  x.setAttribute("width", 144);
-  x.setAttribute("height", 144);
-  x.onload = function() {
-    //prominent colors extracted from image thanks to color thief (MIT License) developed by @lokesh on github!
-    //https://github.com/lokesh/color-thief
-    var colorThief = new ColorThief();
-    rawColors = colorThief.getPalette(x, 9);
-    console.log(rawColors);
-    for(var i=0; i<rawColors.length; i++)
-    {
-      var c = color(rawColors[i][0], rawColors[i][1], rawColors[i][2]);
-      colorList.push(c);
-    }
-    color1 = colorList[0];
-    color2 = colorList[1];
-    color3 = colorList[2];
-    color4 = colorList[3];
-    color5 = colorList[4];
-    color6 = colorList[5];
-    color7 = colorList[6];
-    color8 = colorList[7];
-    backgroundColor = colorList[8];
-    colorsSet = true;
-    redraw();
-    
-  };
+  changeColor(soundNum);
   
   strokeColor = color(255,255,255);
   
@@ -265,39 +246,44 @@ function togglePlay() {
   }
 }
 
+function changeColor(colorNum)
+{
+  x = document.createElement("IMG");
+  x.setAttribute("src", albArt[colorNum]);
+  x.setAttribute("width", 144);
+  x.setAttribute("height", 144);
+  x.onload = function() {
+    //prominent colors extracted from image thanks to color thief (MIT License) developed by @lokesh on github!
+    //https://github.com/lokesh/color-thief
+    var colorThief = new ColorThief();
+    rawColors = colorThief.getPalette(x, 9);
+    console.log(rawColors);
+    for(var i=0; i<rawColors.length; i++)
+    {
+      var c = color(rawColors[i][0], rawColors[i][1], rawColors[i][2]);
+      colorList.push(c);
+    }
+    color1 = colorList[0];
+    color2 = colorList[1];
+    color3 = colorList[2];
+    color4 = colorList[3];
+    color5 = colorList[4];
+    color6 = colorList[5];
+    color7 = colorList[6];
+    color8 = colorList[7];
+    backgroundColor = colorList[8];
+    colorsSet = true;
+    redraw();
+  };
+}
+
 function changeSong() {
   if(input.value() > 0 && input.value() <= 20)
   {
     sounds[soundNum].stop();
     soundNum = input.value() - 1;
-    x = document.createElement("IMG");
-    x.setAttribute("src", albArt[soundNum]);
-    x.setAttribute("width", 144);
-    x.setAttribute("height", 144);
-    x.onload = function() {
-      //prominent colors extracted from image thanks to color thief (MIT License) developed by @lokesh on github!
-      //https://github.com/lokesh/color-thief
-      var colorThief = new ColorThief();
-      rawColors = colorThief.getPalette(x, 9);
-      console.log(rawColors);
-      for(var i=0; i<rawColors.length; i++)
-      {
-        var c = color(rawColors[i][0], rawColors[i][1], rawColors[i][2]);
-        colorList.push(c);
-      }
-      color1 = colorList[0];
-      color2 = colorList[1];
-      color3 = colorList[2];
-      color4 = colorList[3];
-      color5 = colorList[4];
-      color6 = colorList[5];
-      color7 = colorList[6];
-      color8 = colorList[7];
-      backgroundColor = colorList[8];
-      colorsSet = true;
-      redraw();
-
-    };
+    changeColor(soundNum);
+    sounds[soundNum].loop();
   }
 }
 
